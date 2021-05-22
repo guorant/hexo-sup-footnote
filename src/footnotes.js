@@ -53,8 +53,8 @@ function renderFootnotes(text, config) {
             // remove footnote content
             return '<span id="supfntxt:' + indexId + 
             (config.location_target_class ? '" class="' + config.location_target_class : '') + 
-            '">' + index + original + '</span>' + md.renderInline(content.trim())
-            + '<a href="#supfnref:' + indexId + '"> ↩</a>';
+            '">' + index + original + '</span>: ' + md.renderInline(content.trim())
+            + '<a href="#supfnref:' + indexId + '">↩</a><br>';
         } else {
             // with no footnot index
             return match;
@@ -62,13 +62,20 @@ function renderFootnotes(text, config) {
     });
 
     // render footnotes (HTML)
-    var replaceStr = footnotes.map(function (item) { return item.reIndex.replace(/[-[\]{}()*+!<=:?.\\^$|#\s,]/g, '\\$&'); }).join("|");
-    text = text.replace(new RegExp(replaceStr, 'gm'), function (match) {
-        var item = indexMap[match];
-        return '<a id="supfnref:' + item.indexId + '" href="supfntxt:' + item.indexId +
-        (config.location_target_class ? '" class="' + config.location_target_class : '') + 
-        '">' + item.original + '<sup>' + item.index + '</sup></a>';
-    });
+    if (footnotes.length) {
+        var replaceStr = footnotes.map(function (item) 
+            { return item.reIndex.replace(/[-[\]{}()*+!<=:?.\\^$|#\s,]/g, '\\$&'); }).join("|");
+        text = text.replace(new RegExp(replaceStr, 'gm'), function (match) {
+            var item = indexMap[match];
+            if (item) {
+                return '<a id="supfnref:' + item.indexId + '" href="#supfntxt:' + item.indexId +
+                (config.location_target_class ? '" class="' + config.location_target_class : '') + 
+                '">' + item.original + '<sup>' + item.index + '</sup></a>';
+            } else {
+                return match;
+            }
+        });
+    }
 
     return text;
 }
