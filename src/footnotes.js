@@ -37,7 +37,6 @@ function renderFootnotes(text, config) {
     var reFootnoteContent = new RegExp('('+ indexLabel 
         + '|\\[\\d+\\])([\\S \\t]+?)(?::|：) ?([\\S\\s]+?)(?=\\n[\\S\\s]+?(?:' 
         + indexLabel + '|\\[\\d+\\])(?:[\\S \\t]+?)(?::|：)|\n\n|$)', 'g');
-    var html = '';
 
     // render (HTML) footnotes reference
     text = text.replace(reFootnoteContent, function (match, index, original, content) {
@@ -50,7 +49,7 @@ function renderFootnotes(text, config) {
                 original: original,
                 reIndex: reIndex
             });
-            // remove footnote content
+            // render footnote content
             return '<span id="supfntxt:' + indexId + 
             (config.location_target_class ? '" class="' + config.location_target_class : '') + 
             '">' + index + original + '</span>: ' + md.renderInline(content.trim())
