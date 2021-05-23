@@ -35,7 +35,7 @@ function renderFootnotes(text, config) {
         });
     });
     var reFootnoteContent = new RegExp('('+ indexLabel 
-        + '|\\[\\d+\\])([\\S \\t]+?)(?::|：) ?([\\S\\s]+?)(?=(?:' 
+        + '|\\[\\d+\\])([\\S \\t]+?)(?::|：) ?([\\S\\s]+?)(?=\\n[\\S\\s]+?(?:' 
         + indexLabel + '|\\[\\d+\\])(?:[\\S \\t]+?)(?::|：)|\n\n|$)', 'g');
     var html = '';
 
@@ -54,7 +54,7 @@ function renderFootnotes(text, config) {
             return '<span id="supfntxt:' + indexId + 
             (config.location_target_class ? '" class="' + config.location_target_class : '') + 
             '">' + index + original + '</span>: ' + md.renderInline(content.trim())
-            + '<a href="#supfnref:' + indexId + '">↩</a><br>';
+            + '<a href="#supfnref:' + indexId + '">↩</a>';
         } else {
             // with no footnot index
             return match;

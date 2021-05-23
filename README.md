@@ -40,6 +40,7 @@ ninth type footnote with ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇ�
 tenth type footnote with ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ tenth type No.^ⓙ^
 eleventh type footnote with ⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵ eleventh type No.^⒦^
 twelfth type footnote with 1234567890 twelfth type No.^[12]^
+test other type footnote [-[\]{}()*+!<=?.\\$|#\s,^[13]^
 
 ①first type No.: 第一类上标
 ❷second type No.: 第二类上标
@@ -53,6 +54,7 @@ twelfth type footnote with 1234567890 twelfth type No.^[12]^
 ⓙtenth type No.: 第十类上标
 ⒦eleventh type No.: 第十一类上标
 [12]twelfth type No.: 第十二类上标
+[13][-[\]{}()*+!<=?.\\$|#\s,: 测试上标
 ```
 
 See [Demo](http://kchen.cc/2016/11/10/footnotes-in-hexo/) here.
